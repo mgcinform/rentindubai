@@ -8,6 +8,7 @@
   <meta property="og:title" content="rentindubai — Short-term rentals in Dubai" />
   <meta property="og:description" content="Bed space, studio, 1BR, 2BR, 3BR, 4BR and other stays in Dubai from AED 40." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://mgcinform.github.io/rentindubai/assets/photos/apartment-01.jpg" />
   <meta name="theme-color" content="#0e1b2a" />
   <style>
     :root {
@@ -132,6 +133,13 @@
     .type-card strong { font-size: 24px; letter-spacing: -.04em; }
     .type-card span { color: var(--muted); font-size: 14px; }
 
+
+    .gallery { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 16px; }
+    .photo-card { position: relative; overflow: hidden; min-height: 260px; border-radius: var(--radius-xl); background: #ddd; box-shadow: 0 18px 50px rgba(13,24,36,.12); }
+    .photo-card.featured { grid-row: span 2; min-height: 536px; }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .photo-card:after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,14,20,.62), rgba(7,14,20,0) 58%); }
+    .photo-caption { position: absolute; z-index: 1; left: 18px; right: 18px; bottom: 18px; color: white; font-weight: 850; letter-spacing: -.02em; text-shadow: 0 2px 16px rgba(0,0,0,.35); }
     .areas { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
     .area-card { position: relative; border-radius: var(--radius-xl); overflow: hidden; min-height: 340px; background: #ddd; box-shadow: 0 18px 50px rgba(13,24,36,.12); }
     .area-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
@@ -183,7 +191,8 @@
     @media (max-width: 980px) {
       .hero-grid, .audience-grid, .contact { grid-template-columns: 1fr; }
       .hero-card img { height: 420px; }
-      .types, .areas { grid-template-columns: repeat(2,1fr); }
+      .types, .areas, .gallery { grid-template-columns: repeat(2,1fr); }
+      .photo-card.featured { grid-row: auto; min-height: 360px; }
       .strip-grid, .process { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
     }
@@ -194,7 +203,8 @@
       .actions .btn { display: none; }
       .hero { padding-top: 42px; }
       h1 { font-size: 44px; }
-      .types, .areas, .strip-grid, .process, .form-row { grid-template-columns: 1fr; }
+      .types, .areas, .gallery, .strip-grid, .process, .form-row { grid-template-columns: 1fr; }
+      .photo-card, .photo-card.featured { min-height: 280px; }
       .section-head { display: block; }
       .section-head p { margin-top: 14px; }
       .area-card { min-height: 270px; }
@@ -213,6 +223,7 @@
       <a class="brand" href="#top" aria-label="rentindubai home"><span class="brand-mark"></span><span>rentindubai</span></a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#stays"><span class="en">Stays</span><span class="ru">Варианты</span></a>
+        <a href="#photos"><span class="en">Photos</span><span class="ru">Фото</span></a>
         <a href="#areas"><span class="en">Areas</span><span class="ru">Районы</span></a>
         <a href="#contact"><span class="en">Request</span><span class="ru">Заявка</span></a>
       </nav>
@@ -244,7 +255,7 @@
           <div class="note"><span class="status-dot"></span>&nbsp;&nbsp;<span class="en">Open Telegram bot to view photos and send your request.</span><span class="ru">Откройте Telegram-бота, чтобы посмотреть фото и оставить заявку.</span></div>
         </div>
         <div class="hero-card" aria-label="Dubai apartment view">
-          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80" alt="Dubai skyline and waterfront" />
+          <img src="assets/photos/apartment-01.jpg" alt="Modern Dubai apartment living and dining area with panoramic windows" />
           <div class="price-pill">
             <div class="price">40 AED <small><span class="en">starting price</span><span class="ru">стартовая цена</span></small></div>
             <div><strong><span class="en">Fast match by dates</span><span class="ru">Быстрый подбор по датам</span></strong><br><span style="color:var(--muted);font-size:14px"><span class="en">Tell us dates, guests and preferred area.</span><span class="ru">Укажите даты, гостей и район.</span></span></div>
@@ -281,6 +292,23 @@
       </div>
     </section>
 
+    <section id="photos" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <h2><span class="en">Real apartment photos</span><span class="ru">Реальные фото квартиры</span></h2>
+          <p><span class="en">Photos from the apartment: living areas, bedroom, bunk beds and bathroom. Open the Telegram bot to view them as a set.</span><span class="ru">Фото квартиры: гостиные зоны, спальня, двухъярусные кровати и ванная. В Telegram-боте они показываются тем же набором.</span></p>
+        </div>
+        <div class="gallery">
+          <article class="photo-card featured"><img src="assets/photos/apartment-01.jpg" alt="Two-level living and dining area with panoramic window" loading="lazy" /><div class="photo-caption"><span class="en">Living & dining area</span><span class="ru">Гостиная и столовая</span></div></article>
+          <article class="photo-card"><img src="assets/photos/apartment-03.jpg" alt="Bright lounge with sofas and city view" loading="lazy" /><div class="photo-caption"><span class="en">Lounge with city view</span><span class="ru">Лаунж с видом на город</span></div></article>
+          <article class="photo-card"><img src="assets/photos/apartment-04.jpg" alt="Marble bathroom with bathtub and panoramic window" loading="lazy" /><div class="photo-caption"><span class="en">Premium bathroom</span><span class="ru">Ванная комната</span></div></article>
+          <article class="photo-card"><img src="assets/photos/apartment-05.jpg" alt="Bedroom with three single beds and city view" loading="lazy" /><div class="photo-caption"><span class="en">Bedroom for guests</span><span class="ru">Спальня для гостей</span></div></article>
+          <article class="photo-card"><img src="assets/photos/apartment-06.jpg" alt="Bright bedroom with bunk beds and sea view" loading="lazy" /><div class="photo-caption"><span class="en">Bunk beds</span><span class="ru">Двухъярусные кровати</span></div></article>
+          <article class="photo-card"><img src="assets/photos/apartment-07.jpg" alt="Modern living room with dining area and bar counter" loading="lazy" /><div class="photo-caption"><span class="en">Open living space</span><span class="ru">Просторная зона отдыха</span></div></article>
+        </div>
+      </div>
+    </section>
+
     <section id="areas" style="padding-top:0">
       <div class="wrap">
         <div class="section-head">
@@ -288,10 +316,10 @@
           <p><span class="en">Pick the location that fits your trip: beach, city center, business district or value-for-money communities.</span><span class="ru">Выберите район под поездку: пляж, центр, бизнес-локация или более выгодные варианты.</span></p>
         </div>
         <div class="areas">
-          <article class="area-card"><img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=900&q=80" alt="Dubai Marina" /><div class="area-content"><h3>Dubai Marina</h3><p><span class="en">Beach, nightlife, waterfront.</span><span class="ru">Пляж, прогулки, набережная.</span></p></div></article>
-          <article class="area-card"><img src="https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&w=900&q=80" alt="Downtown Dubai" /><div class="area-content"><h3>Downtown</h3><p><span class="en">Burj Khalifa, Dubai Mall, premium stays.</span><span class="ru">Burj Khalifa, Dubai Mall, премиум.</span></p></div></article>
-          <article class="area-card"><img src="https://images.unsplash.com/photo-1526495124232-a04e1849168c?auto=format&fit=crop&w=900&q=80" alt="Business Bay" /><div class="area-content"><h3>Business Bay</h3><p><span class="en">Business trips and central access.</span><span class="ru">Для бизнеса и удобного доступа.</span></p></div></article>
-          <article class="area-card"><img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=900&q=80" alt="JVC Dubai" /><div class="area-content"><h3>JVC</h3><p><span class="en">Good value, calm residential area.</span><span class="ru">Выгодно, спокойно, жилой район.</span></p></div></article>
+          <article class="area-card"><img src="assets/photos/apartment-07.jpg" alt="Dubai Marina" /><div class="area-content"><h3>Dubai Marina</h3><p><span class="en">Beach, nightlife, waterfront.</span><span class="ru">Пляж, прогулки, набережная.</span></p></div></article>
+          <article class="area-card"><img src="assets/photos/apartment-03.jpg" alt="Downtown Dubai" /><div class="area-content"><h3>Downtown</h3><p><span class="en">Burj Khalifa, Dubai Mall, premium stays.</span><span class="ru">Burj Khalifa, Dubai Mall, премиум.</span></p></div></article>
+          <article class="area-card"><img src="assets/photos/apartment-02.jpg" alt="Business Bay" /><div class="area-content"><h3>Business Bay</h3><p><span class="en">Business trips and central access.</span><span class="ru">Для бизнеса и удобного доступа.</span></p></div></article>
+          <article class="area-card"><img src="assets/photos/apartment-05.jpg" alt="JVC Dubai" /><div class="area-content"><h3>JVC</h3><p><span class="en">Good value, calm residential area.</span><span class="ru">Выгодно, спокойно, жилой район.</span></p></div></article>
         </div>
       </div>
     </section>
@@ -358,7 +386,7 @@
   <footer>
     <div class="wrap footer-inner">
       <div>© <span id="year"></span> rentindubai. <span class="en">Short-term rentals in Dubai.</span><span class="ru">Краткосрочная аренда в Дубае.</span></div>
-      <div><span class="en">Temporary images are for layout preview only.</span><span class="ru">Временные изображения используются только для предварительного макета.</span></div>
+      <div><span class="en">Real apartment photos are available on the site and in Telegram bot.</span><span class="ru">Реальные фото квартиры доступны на сайте и в Telegram-боте.</span></div>
     </div>
   </footer>
 
