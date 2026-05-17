@@ -239,9 +239,9 @@
           <div class="hero-cta">
             <a class="btn btn-primary" href="#contact"><span class="en">Send dates</span><span class="ru">Отправить даты</span></a>
             <a class="btn btn-outline" href="#areas"><span class="en">View areas</span><span class="ru">Посмотреть районы</span></a>
-            <a class="btn btn-photo" href="#contact" id="photoBotButton" data-bot-url=""><span class="en">View photos</span><span class="ru">Посмотреть фото</span></a>
+            <a class="btn btn-photo" href="https://t.me/autocollect1bot?start=photos" id="photoBotButton" data-bot-url="https://t.me/autocollect1bot?start=photos"><span class="en">View photos</span><span class="ru">Посмотреть фото</span></a>
           </div>
-          <div class="note"><span class="status-dot"></span>&nbsp;&nbsp;<span class="en">Real photos and Telegram bot will be connected soon.</span><span class="ru">Реальные фото и Telegram-бот будут подключены позже.</span></div>
+          <div class="note"><span class="status-dot"></span>&nbsp;&nbsp;<span class="en">Open Telegram bot to view photos and send your request.</span><span class="ru">Откройте Telegram-бота, чтобы посмотреть фото и оставить заявку.</span></div>
         </div>
         <div class="hero-card" aria-label="Dubai apartment view">
           <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80" alt="Dubai skyline and waterfront" />
@@ -378,17 +378,8 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const photoBotButton = document.getElementById('photoBotButton');
-    photoBotButton.addEventListener('click', function (e) {
-      const botUrl = this.dataset.botUrl;
-      if (!botUrl) {
-        e.preventDefault();
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        alert(root.dataset.lang === 'ru'
-          ? 'Фото скоро будут доступны в Telegram-боте. Пока можно оставить заявку через форму или контакты.'
-          : 'Photos will be available in the Telegram bot soon. For now, please use the form or contact links.');
-        return;
-      }
-      this.href = botUrl;
+    photoBotButton.addEventListener('click', function () {
+      this.href = this.dataset.botUrl || 'https://t.me/autocollect1bot?start=photos';
     });
 
     document.getElementById('leadForm').addEventListener('submit', function (e) {
