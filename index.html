@@ -154,6 +154,15 @@
     .contact { background: var(--blue); color: white; border-radius: 40px; padding: 38px; display: grid; grid-template-columns: .95fr 1.05fr; gap: 34px; align-items: start; }
     .contact h2 { color: white; }
     .contact p { color: rgba(255,255,255,.74); }
+    .contact-links { margin-top: 22px; display: grid; gap: 10px; }
+    .contact-link {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      min-height: 52px; padding: 12px 14px; border-radius: 16px;
+      background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.16);
+      color: white; font-weight: 800; transition: background .2s ease, transform .2s ease;
+    }
+    .contact-link:hover { background: rgba(255,255,255,.16); transform: translateY(-1px); }
+    .contact-link span { color: rgba(255,255,255,.68); font-size: 13px; font-weight: 700; }
     .form { display: grid; gap: 12px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .input, .select, .textarea {
@@ -313,7 +322,12 @@
           <div>
             <div class="eyebrow"><span class="en">Request availability</span><span class="ru">Проверить наличие</span></div>
             <h2><span class="en">Tell us your dates — we’ll prepare options</span><span class="ru">Напишите даты — подготовим варианты</span></h2>
-            <p><span class="en">Contact details will be added later. For now, this form opens a prepared email request from your device.</span><span class="ru">Контакты будут добавлены позже. Пока форма открывает готовое письмо с заявкой на вашем устройстве.</span></p>
+            <p><span class="en">Contact us on Instagram, TikTok or by email. The form also prepares an email request with your dates and preferences.</span><span class="ru">Свяжитесь с нами в Instagram, TikTok или по почте. Форма также подготовит email-заявку с датами и пожеланиями.</span></p>
+            <div class="contact-links" aria-label="Contact information">
+              <a class="contact-link" href="https://www.instagram.com/rent.idubai?igsh=ZmRkb2xzYmd6dDdm" target="_blank" rel="noreferrer">Instagram <span>@rent.idubai</span></a>
+              <a class="contact-link" href="https://www.tiktok.com/@rentindub1?_r=1" target="_blank" rel="noreferrer">TikTok <span>@rentindubai</span></a>
+              <a class="contact-link" href="mailto:mgc.inform@gmail.com">Email <span>mgc.inform@gmail.com</span></a>
+            </div>
           </div>
           <form class="form" id="leadForm">
             <div class="form-row">
@@ -332,7 +346,7 @@
             </div>
             <textarea class="textarea" name="message" placeholder="Budget, preferences, questions / Бюджет, пожелания, вопросы"></textarea>
             <button class="btn btn-gold" type="submit"><span class="en">Prepare request</span><span class="ru">Подготовить заявку</span></button>
-            <div class="form-hint"><span class="en">Later this button can be connected to WhatsApp, Telegram, CRM or a real email inbox.</span><span class="ru">Позже кнопку можно подключить к WhatsApp, Telegram, CRM или реальной почте.</span></div>
+            <div class="form-hint"><span class="en">Use Instagram, TikTok or email for direct contact. WhatsApp can be connected later.</span><span class="ru">Для прямой связи используйте Instagram, TikTok или email. WhatsApp можно подключить позже.</span></div>
           </form>
         </div>
       </div>
@@ -374,7 +388,7 @@
         'Guests: ' + (data.guests || ''),
         'Message: ' + (data.message || '')
       ].join('\n'));
-      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+      window.location.href = 'mailto:mgc.inform@gmail.com?subject=' + subject + '&body=' + body;
     });
   </script>
 </body>
