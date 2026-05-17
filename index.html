@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>rentindubai — Short-term rentals in Dubai</title>
+  <meta name="description" content="Short-term rentals in Dubai: bed space, studios and apartments from AED 40. Areas: Dubai Marina, JVC, Downtown, Business Bay." />
+  <meta property="og:title" content="rentindubai — Short-term rentals in Dubai" />
+  <meta property="og:description" content="Bed space, studio, 1BR, 2BR, 3BR, 4BR and other stays in Dubai from AED 40." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0e1b2a" />
+  <style>
+    :root {
+      --ink: #0d1824;
+      --muted: #607084;
+      --line: rgba(13, 24, 36, .12);
+      --soft: #f4efe8;
+      --paper: #fffaf3;
+      --white: #ffffff;
+      --blue: #123f63;
+      --blue-2: #0e2e4b;
+      --gold: #c99445;
+      --sand: #e9dac4;
+      --green: #1f7a5c;
+      --shadow: 0 24px 70px rgba(14, 46, 75, .18);
+      --radius-xl: 30px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font: inherit; }
+
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 250, 243, .82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 22px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 850; letter-spacing: -.04em; font-size: 22px; }
+    .brand-mark {
+      width: 38px; height: 38px; border-radius: 13px;
+      background: linear-gradient(135deg, var(--blue), #2e769b 55%, var(--gold));
+      box-shadow: 0 12px 30px rgba(18,63,99,.22);
+      position: relative;
+    }
+    .brand-mark:after {
+      content: ""; position: absolute; left: 11px; bottom: 9px; width: 16px; height: 19px;
+      border: 2px solid rgba(255,255,255,.92); border-bottom: 0; border-radius: 8px 8px 0 0;
+    }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; }
+    .nav-links a:hover { color: var(--ink); }
+    .actions { display: flex; align-items: center; gap: 10px; }
+    .lang-toggle {
+      display: inline-flex; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.55);
+    }
+    .lang-toggle button {
+      border: 0; background: transparent; min-width: 42px; height: 34px; border-radius: 999px; cursor: pointer; color: var(--muted); font-weight: 700;
+    }
+    .lang-toggle button.active { background: var(--ink); color: white; }
+    .btn {
+      min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 999px; padding: 0 18px; border: 1px solid transparent;
+      font-weight: 800; letter-spacing: -.01em; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--blue); color: white; box-shadow: 0 14px 34px rgba(18,63,99,.22); }
+    .btn-primary:hover { background: var(--blue-2); }
+    .btn-outline { background: rgba(255,255,255,.68); border-color: var(--line); color: var(--ink); }
+    .btn-gold { background: var(--gold); color: #160f08; box-shadow: 0 14px 34px rgba(201,148,69,.26); }
+
+    .hero { padding: 70px 0 54px; position: relative; overflow: hidden; }
+    .hero:before {
+      content: ""; position: absolute; inset: -220px -160px auto auto; width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,148,69,.30), rgba(201,148,69,0) 62%); pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 54px; align-items: center; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 900; }
+    h1 { margin: 14px 0 18px; font-size: clamp(44px, 6vw, 78px); line-height: .94; letter-spacing: -.065em; max-width: 820px; }
+    .lead { font-size: clamp(18px, 2vw, 22px); color: #405166; max-width: 650px; margin: 0 0 28px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .note { margin-top: 16px; color: var(--muted); font-size: 14px; }
+    .hero-card {
+      background: var(--white); border: 1px solid rgba(255,255,255,.7); border-radius: var(--radius-xl); overflow: hidden;
+      box-shadow: var(--shadow); position: relative;
+    }
+    .hero-card img { height: 500px; width: 100%; object-fit: cover; }
+    .price-pill {
+      position: absolute; left: 22px; bottom: 22px; right: 22px;
+      display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center;
+      background: rgba(255,250,243,.92); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.8);
+      border-radius: 22px; padding: 16px; box-shadow: 0 18px 48px rgba(13,24,36,.18);
+    }
+    .price { font-size: 34px; font-weight: 900; letter-spacing: -.05em; }
+    .price small { font-size: 13px; color: var(--muted); letter-spacing: 0; display: block; font-weight: 700; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); display: inline-block; box-shadow: 0 0 0 7px rgba(31,122,92,.13); }
+
+    .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.42); }
+    .strip-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; }
+    .stat { padding: 24px 22px; border-left: 1px solid var(--line); }
+    .stat:first-child { border-left: 0; }
+    .stat strong { display: block; font-size: 28px; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { padding: 76px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 28px; align-items: end; margin-bottom: 28px; }
+    h2 { margin: 0; font-size: clamp(32px, 4vw, 52px); line-height: 1; letter-spacing: -.055em; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 470px; }
+
+    .types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .type-card {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px;
+      min-height: 160px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .type-card strong { font-size: 24px; letter-spacing: -.04em; }
+    .type-card span { color: var(--muted); font-size: 14px; }
+
+    .areas { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .area-card { position: relative; border-radius: var(--radius-xl); overflow: hidden; min-height: 340px; background: #ddd; box-shadow: 0 18px 50px rgba(13,24,36,.12); }
+    .area-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .area-card:after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,14,20,.72), rgba(7,14,20,.06) 58%); }
+    .area-content { position: absolute; z-index: 1; left: 20px; right: 20px; bottom: 20px; color: white; }
+    .area-content h3 { margin: 0 0 6px; font-size: 24px; letter-spacing: -.04em; }
+    .area-content p { margin: 0; color: rgba(255,255,255,.82); font-size: 14px; }
+
+    .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .panel { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-xl); padding: 30px; }
+    .bullets { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 13px; }
+    .bullets li { display: flex; gap: 12px; align-items: flex-start; color: #33465a; }
+    .check { color: var(--green); font-weight: 900; }
+
+    .process { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .step { background: var(--soft); border: 1px solid rgba(13,24,36,.08); border-radius: var(--radius-lg); padding: 24px; }
+    .step b { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--blue); color: #fff; margin-bottom: 18px; }
+    .step h3 { margin: 0 0 8px; font-size: 22px; letter-spacing: -.035em; }
+    .step p { margin: 0; color: var(--muted); }
+
+    .contact { background: var(--blue); color: white; border-radius: 40px; padding: 38px; display: grid; grid-template-columns: .95fr 1.05fr; gap: 34px; align-items: start; }
+    .contact h2 { color: white; }
+    .contact p { color: rgba(255,255,255,.74); }
+    .form { display: grid; gap: 12px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .input, .select, .textarea {
+      width: 100%; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.10); color: white;
+      border-radius: 16px; padding: 14px 16px; outline: none; min-height: 50px;
+    }
+    .input::placeholder, .textarea::placeholder { color: rgba(255,255,255,.58); }
+    .select option { color: var(--ink); }
+    .textarea { min-height: 104px; resize: vertical; }
+    .form-hint { font-size: 13px; color: rgba(255,255,255,.6); }
+
+    footer { padding: 34px 0 46px; color: var(--muted); font-size: 14px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-top: 24px; }
+
+    [data-lang="ru"] .en, [data-lang="en"] .ru { display: none !important; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .audience-grid, .contact { grid-template-columns: 1fr; }
+      .hero-card img { height: 420px; }
+      .types, .areas { grid-template-columns: repeat(2,1fr); }
+      .strip-grid, .process { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 28px, var(--max)); }
+      .nav { height: 66px; }
+      .brand { font-size: 19px; }
+      .actions .btn { display: none; }
+      .hero { padding-top: 42px; }
+      h1 { font-size: 44px; }
+      .types, .areas, .strip-grid, .process, .form-row { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 14px; }
+      .area-card { min-height: 270px; }
+      .contact { border-radius: 28px; padding: 24px; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, html { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body data-lang="en">
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="rentindubai home"><span class="brand-mark"></span><span>rentindubai</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#stays"><span class="en">Stays</span><span class="ru">Варианты</span></a>
+        <a href="#areas"><span class="en">Areas</span><span class="ru">Районы</span></a>
+        <a href="#contact"><span class="en">Request</span><span class="ru">Заявка</span></a>
+      </nav>
+      <div class="actions">
+        <div class="lang-toggle" aria-label="Language switcher">
+          <button type="button" class="active" data-set-lang="en">EN</button>
+          <button type="button" data-set-lang="ru">RU</button>
+        </div>
+        <a class="btn btn-primary" href="#contact"><span class="en">Check availability</span><span class="ru">Узнать наличие</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="en">Dubai short-term rentals</span><span class="ru">Краткосрочная аренда в Дубае</span></div>
+          <h1><span class="en">Stay in Dubai from AED 40</span><span class="ru">Жильё в Дубае от 40 AED</span></h1>
+          <p class="lead">
+            <span class="en">Bed spaces, studios and apartments for tourists, families, business trips and relocation. Dubai Marina, JVC, Downtown and Business Bay.</span>
+            <span class="ru">Bed space, студии и апартаменты для туристов, семей, бизнеса и релокации. Dubai Marina, JVC, Downtown и Business Bay.</span>
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#contact"><span class="en">Send dates</span><span class="ru">Отправить даты</span></a>
+            <a class="btn btn-outline" href="#areas"><span class="en">View areas</span><span class="ru">Посмотреть районы</span></a>
+          </div>
+          <div class="note"><span class="status-dot"></span>&nbsp;&nbsp;<span class="en">Real photos and contact details will be added soon.</span><span class="ru">Реальные фото и контакты будут добавлены позже.</span></div>
+        </div>
+        <div class="hero-card" aria-label="Dubai apartment view">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80" alt="Dubai skyline and waterfront" />
+          <div class="price-pill">
+            <div class="price">40 AED <small><span class="en">starting price</span><span class="ru">стартовая цена</span></small></div>
+            <div><strong><span class="en">Fast match by dates</span><span class="ru">Быстрый подбор по датам</span></strong><br><span style="color:var(--muted);font-size:14px"><span class="en">Tell us dates, guests and preferred area.</span><span class="ru">Укажите даты, гостей и район.</span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip">
+      <div class="wrap strip-grid">
+        <div class="stat"><strong>40 AED+</strong><span class="en">per night / bed space</span><span class="ru">за ночь / bed space</span></div>
+        <div class="stat"><strong>7+</strong><span class="en">stay formats</span><span class="ru">форматов жилья</span></div>
+        <div class="stat"><strong>4</strong><span class="en">main Dubai areas</span><span class="ru">ключевых района</span></div>
+        <div class="stat"><strong>RU / EN</strong><span class="en">support</span><span class="ru">поддержка</span></div>
+      </div>
+    </div>
+
+    <section id="stays">
+      <div class="wrap">
+        <div class="section-head">
+          <h2><span class="en">Choose your stay</span><span class="ru">Выберите формат</span></h2>
+          <p><span class="en">Options for short visits, longer relocation stays and business trips. Final prices depend on dates, season and exact unit.</span><span class="ru">Варианты для коротких поездок, релокации и бизнеса. Итоговая цена зависит от дат, сезона и конкретного объекта.</span></p>
+        </div>
+        <div class="types">
+          <div class="type-card"><strong>Bed space</strong><span><span class="en">Budget stays from AED 40</span><span class="ru">Бюджетно от 40 AED</span></span></div>
+          <div class="type-card"><strong>Studio</strong><span><span class="en">Private compact apartment</span><span class="ru">Отдельная компактная квартира</span></span></div>
+          <div class="type-card"><strong>1BR</strong><span><span class="en">For couples or solo trips</span><span class="ru">Для пары или одного гостя</span></span></div>
+          <div class="type-card"><strong>2BR</strong><span><span class="en">For families and small teams</span><span class="ru">Для семей и небольших команд</span></span></div>
+          <div class="type-card"><strong>3BR</strong><span><span class="en">More space for longer stays</span><span class="ru">Больше места для долгих поездок</span></span></div>
+          <div class="type-card"><strong>4BR</strong><span><span class="en">Large family or group stays</span><span class="ru">Для большой семьи или группы</span></span></div>
+          <div class="type-card"><strong><span class="en">Other</span><span class="ru">Другое</span></strong><span><span class="en">Tell us what you need</span><span class="ru">Скажите, что нужно</span></span></div>
+          <div class="type-card" style="background:var(--blue);color:white"><strong><span class="en">Need help?</span><span class="ru">Нужна помощь?</span></strong><span style="color:rgba(255,255,255,.74)"><span class="en">Send your dates and budget.</span><span class="ru">Отправьте даты и бюджет.</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="areas" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <h2><span class="en">Popular areas</span><span class="ru">Популярные районы</span></h2>
+          <p><span class="en">Pick the location that fits your trip: beach, city center, business district or value-for-money communities.</span><span class="ru">Выберите район под поездку: пляж, центр, бизнес-локация или более выгодные варианты.</span></p>
+        </div>
+        <div class="areas">
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=900&q=80" alt="Dubai Marina" /><div class="area-content"><h3>Dubai Marina</h3><p><span class="en">Beach, nightlife, waterfront.</span><span class="ru">Пляж, прогулки, набережная.</span></p></div></article>
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&w=900&q=80" alt="Downtown Dubai" /><div class="area-content"><h3>Downtown</h3><p><span class="en">Burj Khalifa, Dubai Mall, premium stays.</span><span class="ru">Burj Khalifa, Dubai Mall, премиум.</span></p></div></article>
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1526495124232-a04e1849168c?auto=format&fit=crop&w=900&q=80" alt="Business Bay" /><div class="area-content"><h3>Business Bay</h3><p><span class="en">Business trips and central access.</span><span class="ru">Для бизнеса и удобного доступа.</span></p></div></article>
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=900&q=80" alt="JVC Dubai" /><div class="area-content"><h3>JVC</h3><p><span class="en">Good value, calm residential area.</span><span class="ru">Выгодно, спокойно, жилой район.</span></p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap audience-grid">
+        <div class="panel">
+          <h2><span class="en">Who it is for</span><span class="ru">Для кого</span></h2>
+          <ul class="bullets">
+            <li><span class="check">✓</span><span><span class="en">Tourists coming for a few nights or a full vacation.</span><span class="ru">Туристы на несколько ночей или полноценный отпуск.</span></span></li>
+            <li><span class="check">✓</span><span><span class="en">Families who need kitchen, space and convenient areas.</span><span class="ru">Семьи, которым нужны кухня, пространство и удобный район.</span></span></li>
+            <li><span class="check">✓</span><span><span class="en">Business guests, exhibition visitors and teams.</span><span class="ru">Бизнес-гости, участники выставок и команды.</span></span></li>
+            <li><span class="check">✓</span><span><span class="en">Relocation from Kazakhstan, Europe, GCC and Russian-speaking countries.</span><span class="ru">Релокация из Казахстана, Европы, GCC и русскоязычных стран.</span></span></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2><span class="en">How it works</span><span class="ru">Как это работает</span></h2>
+          <div class="process" style="grid-template-columns:1fr; margin-top:20px">
+            <div class="step"><b>1</b><h3><span class="en">Send request</span><span class="ru">Отправьте заявку</span></h3><p><span class="en">Dates, number of guests, area and budget.</span><span class="ru">Даты, количество гостей, район и бюджет.</span></p></div>
+            <div class="step"><b>2</b><h3><span class="en">Get options</span><span class="ru">Получите варианты</span></h3><p><span class="en">We match suitable stays and share details.</span><span class="ru">Подберём подходящие варианты и отправим детали.</span></p></div>
+            <div class="step"><b>3</b><h3><span class="en">Confirm stay</span><span class="ru">Подтвердите проживание</span></h3><p><span class="en">Final price, check-in details and support.</span><span class="ru">Финальная цена, заселение и поддержка.</span></p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="padding-top:0">
+      <div class="wrap">
+        <div class="contact">
+          <div>
+            <div class="eyebrow"><span class="en">Request availability</span><span class="ru">Проверить наличие</span></div>
+            <h2><span class="en">Tell us your dates — we’ll prepare options</span><span class="ru">Напишите даты — подготовим варианты</span></h2>
+            <p><span class="en">Contact details will be added later. For now, this form opens a prepared email request from your device.</span><span class="ru">Контакты будут добавлены позже. Пока форма открывает готовое письмо с заявкой на вашем устройстве.</span></p>
+          </div>
+          <form class="form" id="leadForm">
+            <div class="form-row">
+              <input class="input" name="name" placeholder="Name / Имя" autocomplete="name" />
+              <input class="input" name="contact" placeholder="WhatsApp / Email" autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <input class="input" name="dates" placeholder="Dates / Даты" />
+              <select class="select" name="type">
+                <option value="Bed space">Bed space</option><option value="Studio">Studio</option><option value="1BR">1BR</option><option value="2BR">2BR</option><option value="3BR">3BR</option><option value="4BR">4BR</option><option value="Other">Other / Другое</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <select class="select" name="area"><option>Dubai Marina</option><option>JVC</option><option>Downtown</option><option>Business Bay</option><option>Any area / Любой район</option></select>
+              <input class="input" name="guests" placeholder="Guests / Гости" />
+            </div>
+            <textarea class="textarea" name="message" placeholder="Budget, preferences, questions / Бюджет, пожелания, вопросы"></textarea>
+            <button class="btn btn-gold" type="submit"><span class="en">Prepare request</span><span class="ru">Подготовить заявку</span></button>
+            <div class="form-hint"><span class="en">Later this button can be connected to WhatsApp, Telegram, CRM or a real email inbox.</span><span class="ru">Позже кнопку можно подключить к WhatsApp, Telegram, CRM или реальной почте.</span></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> rentindubai. <span class="en">Short-term rentals in Dubai.</span><span class="ru">Краткосрочная аренда в Дубае.</span></div>
+      <div><span class="en">Temporary images are for layout preview only.</span><span class="ru">Временные изображения используются только для предварительного макета.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const root = document.body;
+    const buttons = document.querySelectorAll('[data-set-lang]');
+    function setLang(lang) {
+      root.dataset.lang = lang;
+      document.documentElement.lang = lang;
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.setLang === lang));
+      localStorage.setItem('rentindubai.lang', lang);
+      document.title = lang === 'ru' ? 'rentindubai — краткосрочная аренда в Дубае' : 'rentindubai — Short-term rentals in Dubai';
+    }
+    buttons.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.setLang)));
+    const savedLang = localStorage.getItem('rentindubai.lang');
+    setLang(savedLang || ((navigator.language || '').startsWith('ru') ? 'ru' : 'en'));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('leadForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(this).entries());
+      const subject = encodeURIComponent('rentindubai request');
+      const body = encodeURIComponent([
+        'Name: ' + (data.name || ''),
+        'Contact: ' + (data.contact || ''),
+        'Dates: ' + (data.dates || ''),
+        'Type: ' + (data.type || ''),
+        'Area: ' + (data.area || ''),
+        'Guests: ' + (data.guests || ''),
+        'Message: ' + (data.message || '')
+      ].join('\n'));
+      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
