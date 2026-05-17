@@ -83,6 +83,7 @@
     .btn-primary { background: var(--blue); color: white; box-shadow: 0 14px 34px rgba(18,63,99,.22); }
     .btn-primary:hover { background: var(--blue-2); }
     .btn-outline { background: rgba(255,255,255,.68); border-color: var(--line); color: var(--ink); }
+    .btn-photo { background: var(--gold); color: #160f08; box-shadow: 0 14px 34px rgba(201,148,69,.24); }
     .btn-gold { background: var(--gold); color: #160f08; box-shadow: 0 14px 34px rgba(201,148,69,.26); }
 
     .hero { padding: 70px 0 54px; position: relative; overflow: hidden; }
@@ -238,8 +239,9 @@
           <div class="hero-cta">
             <a class="btn btn-primary" href="#contact"><span class="en">Send dates</span><span class="ru">Отправить даты</span></a>
             <a class="btn btn-outline" href="#areas"><span class="en">View areas</span><span class="ru">Посмотреть районы</span></a>
+            <a class="btn btn-photo" href="#contact" id="photoBotButton" data-bot-url=""><span class="en">View photos</span><span class="ru">Посмотреть фото</span></a>
           </div>
-          <div class="note"><span class="status-dot"></span>&nbsp;&nbsp;<span class="en">Real photos and contact details will be added soon.</span><span class="ru">Реальные фото и контакты будут добавлены позже.</span></div>
+          <div class="note"><span class="status-dot"></span>&nbsp;&nbsp;<span class="en">Real photos and Telegram bot will be connected soon.</span><span class="ru">Реальные фото и Telegram-бот будут подключены позже.</span></div>
         </div>
         <div class="hero-card" aria-label="Dubai apartment view">
           <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80" alt="Dubai skyline and waterfront" />
@@ -374,6 +376,20 @@
     const savedLang = localStorage.getItem('rentindubai.lang');
     setLang(savedLang || ((navigator.language || '').startsWith('ru') ? 'ru' : 'en'));
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const photoBotButton = document.getElementById('photoBotButton');
+    photoBotButton.addEventListener('click', function (e) {
+      const botUrl = this.dataset.botUrl;
+      if (!botUrl) {
+        e.preventDefault();
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        alert(root.dataset.lang === 'ru'
+          ? 'Фото скоро будут доступны в Telegram-боте. Пока можно оставить заявку через форму или контакты.'
+          : 'Photos will be available in the Telegram bot soon. For now, please use the form or contact links.');
+        return;
+      }
+      this.href = botUrl;
+    });
 
     document.getElementById('leadForm').addEventListener('submit', function (e) {
       e.preventDefault();
