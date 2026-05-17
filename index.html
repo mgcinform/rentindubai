@@ -316,10 +316,10 @@
           <p><span class="en">Pick the location that fits your trip: beach, city center, business district or value-for-money communities.</span><span class="ru">Выберите район под поездку: пляж, центр, бизнес-локация или более выгодные варианты.</span></p>
         </div>
         <div class="areas">
-          <article class="area-card"><img src="assets/photos/apartment-07.jpg" alt="Dubai Marina" /><div class="area-content"><h3>Dubai Marina</h3><p><span class="en">Beach, nightlife, waterfront.</span><span class="ru">Пляж, прогулки, набережная.</span></p></div></article>
-          <article class="area-card"><img src="assets/photos/apartment-03.jpg" alt="Downtown Dubai" /><div class="area-content"><h3>Downtown</h3><p><span class="en">Burj Khalifa, Dubai Mall, premium stays.</span><span class="ru">Burj Khalifa, Dubai Mall, премиум.</span></p></div></article>
-          <article class="area-card"><img src="assets/photos/apartment-02.jpg" alt="Business Bay" /><div class="area-content"><h3>Business Bay</h3><p><span class="en">Business trips and central access.</span><span class="ru">Для бизнеса и удобного доступа.</span></p></div></article>
-          <article class="area-card"><img src="assets/photos/apartment-05.jpg" alt="JVC Dubai" /><div class="area-content"><h3>JVC</h3><p><span class="en">Good value, calm residential area.</span><span class="ru">Выгодно, спокойно, жилой район.</span></p></div></article>
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=900&q=80" alt="Dubai Marina" /><div class="area-content"><h3>Dubai Marina</h3><p><span class="en">Beach, nightlife, waterfront.</span><span class="ru">Пляж, прогулки, набережная.</span></p></div></article>
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&w=900&q=80" alt="Downtown Dubai" /><div class="area-content"><h3>Downtown</h3><p><span class="en">Burj Khalifa, Dubai Mall, premium stays.</span><span class="ru">Burj Khalifa, Dubai Mall, премиум.</span></p></div></article>
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1526495124232-a04e1849168c?auto=format&fit=crop&w=900&q=80" alt="Business Bay" /><div class="area-content"><h3>Business Bay</h3><p><span class="en">Business trips and central access.</span><span class="ru">Для бизнеса и удобного доступа.</span></p></div></article>
+          <article class="area-card"><img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=900&q=80" alt="JVC Dubai" /><div class="area-content"><h3>JVC</h3><p><span class="en">Good value, calm residential area.</span><span class="ru">Выгодно, спокойно, жилой район.</span></p></div></article>
         </div>
       </div>
     </section>
@@ -352,7 +352,7 @@
           <div>
             <div class="eyebrow"><span class="en">Request availability</span><span class="ru">Проверить наличие</span></div>
             <h2><span class="en">Tell us your dates — we’ll prepare options</span><span class="ru">Напишите даты — подготовим варианты</span></h2>
-            <p><span class="en">Contact us on Instagram, TikTok or by email. The form also prepares an email request with your dates and preferences.</span><span class="ru">Свяжитесь с нами в Instagram, TikTok или по почте. Форма также подготовит email-заявку с датами и пожеланиями.</span></p>
+            <p><span class="en">Contact us on Instagram, TikTok or by email. The form sends your request to our Telegram bot.</span><span class="ru">Свяжитесь с нами в Instagram, TikTok или по почте. Форма отправляет заявку в наш Telegram-бот.</span></p>
             <div class="contact-links" aria-label="Contact information">
               <a class="contact-link" href="https://www.instagram.com/rent.idubai?igsh=eDRpdjZ5M3ozaGhn" target="_blank" rel="noreferrer">Instagram <span>@rent.idubai</span></a>
               <a class="contact-link" href="https://www.tiktok.com/@rentindub1?_r=1" target="_blank" rel="noreferrer">TikTok <span>@rentindubai</span></a>
@@ -376,7 +376,7 @@
             </div>
             <textarea class="textarea" name="message" placeholder="Budget, preferences, questions / Бюджет, пожелания, вопросы"></textarea>
             <button class="btn btn-gold" type="submit"><span class="en">Prepare request</span><span class="ru">Подготовить заявку</span></button>
-            <div class="form-hint"><span class="en">Use Instagram, TikTok or email for direct contact. WhatsApp can be connected later.</span><span class="ru">Для прямой связи используйте Instagram, TikTok или email. WhatsApp можно подключить позже.</span></div>
+            <div class="form-hint"><span class="en">After submitting, your request is sent to the Telegram bot and Telegram opens for continuation.</span><span class="ru">После отправки заявка уходит в Telegram-бот, и Telegram откроется для продолжения общения.</span></div>
           </form>
         </div>
       </div>
@@ -413,17 +413,18 @@
     document.getElementById('leadForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(this).entries());
-      const subject = encodeURIComponent('rentindubai request');
-      const body = encodeURIComponent([
-        'Name: ' + (data.name || ''),
-        'Contact: ' + (data.contact || ''),
-        'Dates: ' + (data.dates || ''),
-        'Type: ' + (data.type || ''),
-        'Area: ' + (data.area || ''),
-        'Guests: ' + (data.guests || ''),
-        'Message: ' + (data.message || '')
-      ].join('\n'));
-      window.location.href = 'mailto:mgc.inform@gmail.com?subject=' + subject + '&body=' + body;
+      const endpoint = 'https://skin-definition-veteran-outsourcing.trycloudflare.com/lead';
+      const params = new URLSearchParams({
+        name: data.name || '',
+        contact: data.contact || '',
+        dates: data.dates || '',
+        type: data.type || '',
+        area: data.area || '',
+        guests: data.guests || '',
+        message: data.message || '',
+        source: 'rentindubai_site'
+      });
+      window.location.href = endpoint + '?' + params.toString();
     });
   </script>
 </body>
