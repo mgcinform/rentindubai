@@ -10,6 +10,23 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://mgcinform.github.io/rentindubai/assets/photos/apartment-01.jpg" />
   <meta name="theme-color" content="#0e1b2a" />
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '975653534946689');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=975653534946689&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <style>
     :root {
       --ink: #0d1824;
@@ -407,11 +424,24 @@
 
     const photoBotButton = document.getElementById('photoBotButton');
     photoBotButton.addEventListener('click', function () {
+      if (typeof fbq === 'function') fbq('trackCustom', 'ViewPhotos');
       this.href = this.dataset.botUrl || 'https://t.me/autocollect1bot?start=photos';
+    });
+
+    document.querySelectorAll('.contact-link').forEach(link => {
+      link.addEventListener('click', function () {
+        if (typeof fbq === 'function') {
+          const label = this.textContent.trim().toLowerCase();
+          if (label.includes('instagram')) fbq('trackCustom', 'ContactInstagram');
+          else if (label.includes('tiktok')) fbq('trackCustom', 'ContactTikTok');
+          else if (label.includes('email')) fbq('track', 'Contact');
+        }
+      });
     });
 
     document.getElementById('leadForm').addEventListener('submit', function (e) {
       e.preventDefault();
+      if (typeof fbq === 'function') fbq('track', 'Lead');
       const data = Object.fromEntries(new FormData(this).entries());
       const endpoint = 'https://skin-definition-veteran-outsourcing.trycloudflare.com/lead';
       const params = new URLSearchParams({
